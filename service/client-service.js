@@ -24,32 +24,41 @@ const crearNuevaLinea = (nombre, email) => {
 
 const table = document.querySelector("[data-table]")
 
-
-const http = new XMLHttpRequest();
-
 //abrir http (método, url);
-
 //Crud  -método HTTP
 //Create  - Post
 //Read  - Get
 //Update  - Put/Patch
 //Delete  - Delete
 
-http.open("GET", "http://localhost:3000/perfil");
+const listaClientes = () => {
+    const promise = new Promise((resolve, reject) => {
 
-http.send();
+        const http = new XMLHttpRequest();
+        http.open("GET", "http://localhost:3000/perfil");
 
-http.onload = () => {
+        http.send();
 
-    const data = JSON.parse(http.response);
-    console.log(data);
+        http.onload = () => {
+            const response = JSON.parse(http.response);
+            if (http.status >= 400) {
+                reject(response);
+            } else {
+                resolve(response);
+            }
 
-    data.forEach(( perfil ) => {
 
-        const nuevaLinea =  crearNuevaLinea(perfil.nombre, perfil.email);
-        table.appendChild(nuevaLinea);
-    })
+        };
+    });
+    return promise;
+}
 
-};
+listaClientes();
 
-console.log(http);
+
+
+/*data.forEach((perfil) => {
+
+    const nuevaLinea = crearNuevaLinea(perfil.nombre, perfil.email);
+    table.appendChild(nuevaLinea);
+})*/
