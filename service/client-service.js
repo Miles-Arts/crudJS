@@ -46,19 +46,18 @@ const listaClientes = () => {
             } else {
                 resolve(response);
             }
-
-
         };
     });
     return promise;
 }
 
-listaClientes();
+listaClientes().then((data) => {
+
+    data.forEach((perfil) => {
+
+        const nuevaLinea = crearNuevaLinea(perfil.nombre, perfil.email);
+        table.appendChild(nuevaLinea);
+    });
+}).catch((error) => alert ("Ocurrio un error"));
 
 
-
-/*data.forEach((perfil) => {
-
-    const nuevaLinea = crearNuevaLinea(perfil.nombre, perfil.email);
-    table.appendChild(nuevaLinea);
-})*/
