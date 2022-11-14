@@ -32,7 +32,23 @@ const table = document.querySelector("[data-table]")
 //Delete  - Delete
 //fecth API
 const listaClientes = () => {
-   return fetch("http://localhost:3000/perfil")
+    const promise = new Promise((resolve, reject) => {
+
+        const http = new XMLHttpRequest();
+        http.open("GET", "http://localhost:3000/perfil");
+
+        http.send();
+
+        http.onload = () => {
+            const response = JSON.parse(http.response);
+            if (http.status >= 400) {
+                reject(response);
+            } else {
+                resolve(response);
+            }
+        };
+    });
+    return promise;
 }
 
 listaClientes().then((data) => {
