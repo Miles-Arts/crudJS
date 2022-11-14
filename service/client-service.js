@@ -32,16 +32,19 @@ const table = document.querySelector("[data-table]")
 //Delete  - Delete
 //fecth API
 const listaClientes = () => {
-   return fetch("http://localhost:3000/perfil")
-}
 
-listaClientes().then((data) => {
+    return fetch("http://localhost:3000/perfil").then(respuesta => respuesta.json()
 
-    data.forEach((perfil) => {
+    )
+};
 
-        const nuevaLinea = crearNuevaLinea(perfil.nombre, perfil.email);
-        table.appendChild(nuevaLinea);
-    });
-}).catch((error) => alert ("Ocurrio un error"));
+listaClientes()
+    .then((data) => {
+
+        data.forEach((perfil) => {
+            const nuevaLinea = crearNuevaLinea(perfil.nombre, perfil.email);
+            table.appendChild(nuevaLinea);
+        });
+    }).catch((error) => alert("Ocurrio un error"));
 
 
