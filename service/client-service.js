@@ -31,12 +31,8 @@ const table = document.querySelector("[data-table]")
 //Update  - Put/Patch
 //Delete  - Delete
 //fecth API
-const listaClientes = () => {
+const listaClientes = () => fetch("http://localhost:3000/perfil").then((respuesta) => respuesta.json());
 
-    return fetch("http://localhost:3000/perfil").then(respuesta => respuesta.json()
-
-    )
-};
 
 listaClientes()
     .then((data) => {
