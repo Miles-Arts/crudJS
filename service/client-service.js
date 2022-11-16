@@ -28,11 +28,24 @@ const detalleCliente = (id) => {
     );
 };
 
+const actualizarCliente = (nombre, email, id) => {
+    return fetch(`http://localhost:3000/perfil/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-type": "application/json"
+        },
+        body: JSON.stringify({ nobre, email}),
+    })
+    .then( respues => console.log(respues))
+    .cath(err => console.log(err))
+};
+
 export const clientServices = {
     listaClientes,
     crearCliente,
     eliminarCliente,
     detalleCliente,
+    actualizarCliente,
 };
 
 
