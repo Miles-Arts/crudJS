@@ -34,10 +34,10 @@ const actualizarCliente = (nombre, email, id) => {
         headers: {
             "Content-type": "application/json"
         },
-        body: JSON.stringify({ nobre, email}),
+        body: JSON.stringify({ nombre, email}),
     })
-    .then( respues => console.log(respues))
-    .cath(err => console.log(err))
+    .then(( respuesta ) => respuesta)
+    .catch((err ) => console.log(err))
 };
 
 export const clientServices = {
